@@ -27,6 +27,8 @@ public class ClimbBase extends SubsystemBase {
 
   private double tipSpeed = Constants.climbTipSpeed; //Speed for elevator to tip robot at
 
+  public static int moving;
+
   public ClimbBase() {
     
     this.elevateMotor = new TalonFX(Constants.climbElevateMotor);
@@ -38,19 +40,23 @@ public class ClimbBase extends SubsystemBase {
     //this.angleBackSwitch = new DigitalInput(Constants.angleBackSwitch);
     //this.angleFrontSwitch = new DigitalInput(Constants.angleFrontSwitch);
     setDefaultCommand(new ClimbDefault(this));
+    moving = 0;
     }
 
   //raises elevator
   public void raiseClimbElevator(){
     this.elevateMotor.set(TalonFXControlMode.PercentOutput, Constants.climbElevatorSpeedUp);
+    moving = 1;
   }
 
   public void lowerClimbElevator(){
     this.elevateMotor.set(TalonFXControlMode.PercentOutput, Constants.climbElevatorSpeedDown);
+    moving = -1;
   }
 
   public void zeroClimbElevator(){
     this.elevateMotor.set(TalonFXControlMode.PercentOutput, 0);
+    moving = 0;
   }
 
   //tips robot

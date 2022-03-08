@@ -33,6 +33,10 @@ public class ShooterBase extends SubsystemBase {
   private double pidI = 0;
   private double pidD = 0;
 
+  public static double velocity;
+  public static double velocityTarget;
+
+
   public ShooterBase() {
     this.shootingWheels = new TalonFX(Constants.shootingMotor);
     //this.shootingAngle = new VictorSPX(Constants.shootingAngle);
@@ -53,6 +57,7 @@ public class ShooterBase extends SubsystemBase {
   public void setVelocityShooter(double v){
     this.shootingWheels.set(TalonFXControlMode.Velocity, v/Constants.shooterPulseToMeter/10, DemandType.ArbitraryFeedForward,feedforward.calculate(v));  
     SmartDashboard.putNumber("Velocity target",  v/Constants.shooterPulseToMeter/10);
+    velocityTarget = v;
     SmartDashboard.putNumber("shooter velocity now", getShooterVelocity());
   }
 
@@ -97,6 +102,7 @@ public void print(){
 }
   @Override
   public void periodic() {
+    velocity = getShooterVelocity();
     //SmartDashboard.putNumber("shooter velocity", getShooterVelocity());
   }
 }

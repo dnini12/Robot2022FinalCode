@@ -10,6 +10,8 @@ import frc.robot.subsystems.ClimbBase;
 
 public class ClimbDefault extends CommandBase {
   private ClimbBase climbBase;
+
+
   
   public ClimbDefault(ClimbBase climbBase) {
     this.climbBase = climbBase;
