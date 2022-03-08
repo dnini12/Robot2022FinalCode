@@ -32,15 +32,14 @@ public class Turn180Degrees extends CommandBase {
     this.driveBase = driveBase;
     addRequirements(this.driveBase);
 
-    this.pidP = 0.006;
-    this.pidI = 0.0002;
-    this.pidD = 0.00001;
+    this.pidP = 0.033;
+    this.pidI = 0;
+    this.pidD = 0.001;
 
     this.TurnPID = new PIDController(this.pidP, this.pidI, this.pidD);
-    this.TurnPID.isContinuousInputEnabled();
-    this.TurnPID.setTolerance(this.tolerance);
+   this.TurnPID.isContinuousInputEnabled();
+    this.TurnPID.setTolerance(this.tolerance,2);
     this.TurnPID.setIntegratorRange(-maxRange, maxRange);
-    
   }
 
   // Called when the command is initially scheduled.
@@ -53,8 +52,9 @@ public class Turn180Degrees extends CommandBase {
   @Override
   public void execute() {
     SmartDashboard.putNumber("setpoint",this.setPoint);
-    this.driveBase.setPower(this.TurnPID.calculate(this.driveBase.getGyroYaw(), this.setPoint), -this.TurnPID.calculate(this.driveBase.getGyroYaw(), this.setPoint));
-    SmartDashboard.putNumber("pid clac",this.TurnPID.calculate(this.driveBase.getGyroYaw(), this.setPoint));
+    double power = this.TurnPID.calculate(this.driveBase.getGyroYaw(),this.setPoint)>0?Math.min(this.TurnPID.calculate(this.driveBase.getGyroYaw(),this.setPoint), this.maxRange):Math.max(this.TurnPID.calculate(this.driveBase.getGyroYaw(),this.setPoint), -this.maxRange);
+    this.driveBase.setPower(-power, power);
+    SmartDashboard.putNumber("power",power);
   }
 
   // Called once the command ends or is interrupted.

@@ -26,10 +26,10 @@ public class ShooterBase extends SubsystemBase {
 
   private SimpleMotorFeedforward feedforward;
   //feedforeward values
-  private double ks = 0.053125;
-  private double kv = 0.03125;
+  private double ks = 0.02519;
+  private double kv = 0.021433;
   //pid values
-  private double pidP = 0.005;
+  private double pidP = 0.01;
   private double pidI = 0;
   private double pidD = 0;
 
@@ -94,7 +94,6 @@ public double getAngleEncoder(){//get angle encoder value
 
 public void print(){
   SmartDashboard.putNumber("shooter velocity", getShooterVelocity());
-  SmartDashboard.putNumber("shooter velocity ERROR", this.shootingWheels.getClosedLoopError());
 }
   @Override
   public void periodic() {

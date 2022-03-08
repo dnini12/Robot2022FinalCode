@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.I2C.Port;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -24,9 +23,9 @@ public final class Constants {
     public static final int topLimitSwitch = 1; //Connection for imit switch pressed when intake is upright
     public static final int lowLimitSwitch = 0; //Connection for imit switch pressed when intake is down
     public static final double intakeSpeed = 1; //Speed to swallow balls with ;)
-    public static final double intakeAngleSpeedRaise = 0.95; //Speed to raise intake with
+    public static final double intakeAngleSpeedRaise = 1; //Speed to raise intake with
     public static final double intakeAngleSpeedLower = 0.4; //Speed to lower intake with
-    public static final int analogInputPort = 1;
+
 
     
     //Shooter
@@ -38,16 +37,15 @@ public final class Constants {
 
     public static final double shootingSpeedDeadzone = 0.0;
 
-    public static final double shootingFromHubVelocity = 27;
-    public static final double shootingFromHubVelocityAuto = 25;
+    public static final double shootingFromHubVelocity = 20;
+    public static final double shootingFromHubVelocityAuto = 20;
     public static final double shootingFromLaunchpadVelocity = 0.0;
 
-    public static final double shooterPulseToMeter = 0.3192/2048;
+    public static final double shooterPulseToMeter = 0.4788/2048;
 
     //Climb
     public static final int climbElevateMotor = 16; //Connection for motor that lifts the elevator
     public static final int climbTipAngleMotor = 17; //Connection for motor that tips the robot while hanging
-    public static final Port colorSensorConnection = null; //Connection for color sensor
     public static final double climbElevatorSpeedUp = 0.4; //Speed for which elevator goes up at
     public static final double climbElevatorSpeedDown = -1;
     public static final double climbTipSpeed = 0; //Speed for which angle to tip at
@@ -61,10 +59,11 @@ public final class Constants {
     //Storage
     public static final double storagePower = 0.9;//power that the storage system motors use
     public static final double storagePowerAuto = 0.9;
-    public static final double maxDetection = 2.4;//max measurment when we detect the ball
-    public static final double minDetection = 1.3;//min measurment when we detect the ball
+    public static final double maxDetection = 2.3;//max measurment when we detect the ball
+    public static final double minDetection = 1.4;//min measurment when we detect the ball
     public static final int storageLowerMotor = 15;
     public static final int storageUpperMotor = 20;
+    public static final int storageSensor = 0;
 
     //OI
     public static final int leftJoystickPort = 1;
@@ -80,7 +79,7 @@ public final class Constants {
     public static final int driveLeftLowerMotor = 10;
     public static final int driveRightUpperMotor = 19;
     public static final int driveRightLowerMotor = 18;
-    public static final double limelightRotationProportion = 0.005;
+    public static final double limelightRotationProportion = 0.03;
 
     public static final double drivebaseEncoderPerMeter = 43050;
     public static final double maxPower = 0.6;
@@ -91,8 +90,8 @@ public final class Constants {
     //Field & Robot
     public static class FieldAndRobot{
         public static final double upperHubHeight = 2.64; //in meters
-        public static final double limelightAngleDegrees = 25;
-        public static final double limelightHeight = 1.19;
+        public static final double limelightAngleDegrees = 23;
+        public static final double limelightHeight = 0.81;
         public static final double heightForCalculation = upperHubHeight - limelightHeight;
         public static final double leftoverDist = 0; //distance from when 'AutoDriveToHub' ends to target distance from hub
     }

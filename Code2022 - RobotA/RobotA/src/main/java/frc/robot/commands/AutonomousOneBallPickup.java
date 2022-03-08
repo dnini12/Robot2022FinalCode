@@ -52,7 +52,7 @@ public class AutonomousOneBallPickup extends SequentialCommandGroup {
       //new ParallelRaceGroup(new WaitCommand(1),new StartEndCommand(()->this.storageSubsystem.setBackwards(),()->this.storageSubsystem.zeroAllMotors(),this.storageSubsystem)),
       new ParallelRaceGroup(new ShootAuto(this.shooterBase),new WaitCommand(2)),
       new ParallelRaceGroup(new WaitCommand(0.2),new StartEndCommand(()->this.storageSubsystem.setLowStorageBack(),()->this.storageSubsystem.zeroAllMotors())),
-      new ParallelCommandGroup(new InstantCommand(()->this.storageSubsystem.setTopStorage()),new WaitCommand(1.5)),
+      new ParallelCommandGroup(new InstantCommand(()->this.storageSubsystem.setTopStorage()),new WaitCommand(2)),
       new ParallelRaceGroup(new WaitCommand(2.5),new StartEndCommand(()->this.storageSubsystem.setLowStorage(),()->this.storageSubsystem.zeroAllMotors())),
       new InstantCommand(()-> this.shooterBase.setPowerShooter(0),this.shooterBase),
       new ParallelRaceGroup(new StartEndCommand(()-> this.driveBase.setPower(-0.45, -0.45),()-> this.driveBase.setPower(0, 0)),new WaitCommand(2.5))

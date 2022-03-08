@@ -19,6 +19,7 @@ import frc.robot.commands.Turn180Degrees;
 import frc.robot.subsystems.ClimbBase;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.IntakeBase;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LimelightBase;
 import frc.robot.subsystems.ShooterBase;
 import frc.robot.subsystems.StorageSubsystem;
@@ -39,6 +40,7 @@ public class RobotContainer {
   public final ClimbBase climbBase = new ClimbBase();
   public final OI robot_oi = new OI(storageSubsystem, intakeBase, driveBase, shooterBase, climbBase);
   public final LimelightBase limelightBase = new LimelightBase();
+  public final LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -61,10 +63,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    //return new InstantCommand(()-> driveBase.setPower(0.3,0.3), driveBase).andThen(new WaitCommand(1), new InstantCommand(()-> driveBase.print() , driveBase),
-    //return new AutonomousOneBallPickup(this.driveBase, this.shooterBase, this.limelightBase, this.intakeBase, this.storageSubsystem);
+    //return new InstantCommand(()-> shooterBase.setVelocityShooter(18), shooterBase).andThen(new WaitCommand(1), new InstantCommand(()-> shooterBase.print(),shooterBase),
+    //new InstantCommand(()-> shooterBase.setPowerShooter(0), shooterBase));
+    return new AutonomousOneBallPickup(this.driveBase, this.shooterBase, this.limelightBase, this.intakeBase, this.storageSubsystem);
     //return new AutoDriveToHub(this.driveBase, this.limelightBase);
-    //return new CollectBall(intakeBase, storageSubsystem);
-    return new DrivePerMeterAuto(this.driveBase, 1);
+    //return new Turn180Degrees(driveBase);
   }
 }

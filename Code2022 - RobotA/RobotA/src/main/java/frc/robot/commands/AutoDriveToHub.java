@@ -20,10 +20,11 @@ public class AutoDriveToHub extends CommandBase {
   private double distanceToHub;
   private double limelightAngleRadians;
 
-  private double pidP = 0.3; 
+  private double pidP = 0.7; 
   private double pidI = 0; 
   private double pidD = 0; 
   private PIDController pidController;
+  private double maxPowerDrive = 0.6;
 
   public AutoDriveToHub(DriveBase drivebase, LimelightBase limelight) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -41,7 +42,7 @@ public class AutoDriveToHub extends CommandBase {
   public void initialize() {
     this.limelightAngleRadians = (FieldAndRobot.limelightAngleDegrees + this.limelight.getY()) * (Math.PI / 180);
     this.distanceToHub = FieldAndRobot.heightForCalculation / Math.tan(this.limelightAngleRadians);
-    pidController.setSetpoint(1.5);
+    pidController.setSetpoint(1.75);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -49,7 +50,7 @@ public class AutoDriveToHub extends CommandBase {
   public void execute() {
     this.limelightAngleRadians = (FieldAndRobot.limelightAngleDegrees + this.limelight.getY()) * (Math.PI / 180);
     this.distanceToHub = FieldAndRobot.heightForCalculation / Math.tan(this.limelightAngleRadians);
-    double powerForward = this.pidController.calculate(this.distanceToHub)<0?Math.max(this.pidController.calculate(this.distanceToHub), -0.25):Math.min(this.pidController.calculate(this.distanceToHub), 0.25);
+    double powerForward = this.pidController.calculate(this.distanceToHub)<0?Math.max(this.pidController.calculate(this.distanceToHub), -maxPowerDrive):Math.min(this.pidController.calculate(this.distanceToHub), maxPowerDrive);
     this.drivebase.setVelocity(powerForward - this.limelight.getX() * Drive.limelightRotationProportion, powerForward + this.limelight.getX() * Drive.limelightRotationProportion);
     // this.drivebase.setPower(-powerForward, -powerForward);
     //this.drivebase.setPower(this.limelight.getX() * Drive.limelightRotationProportion, -this.limelight.getX() * Drive.limelightRotationProportion);

@@ -24,7 +24,7 @@ public class StorageDefault extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //this.storageSubsystem.autonomusBallDetection();
+    this.storageSubsystem.autonomusBallDetection();
     if(OI.getXboxController().getLeftBumper()){
       this.storageSubsystem.setTopStorage();
     }

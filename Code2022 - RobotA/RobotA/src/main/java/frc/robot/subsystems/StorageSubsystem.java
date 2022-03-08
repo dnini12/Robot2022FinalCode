@@ -27,7 +27,7 @@ public class StorageSubsystem extends SubsystemBase {
     this.upperMotor = new CANSparkMax(Constants.storageUpperMotor,MotorType.kBrushless);
     this.lowerMotor = new VictorSPX(Constants.storageLowerMotor);
     
-    //this.distanceSenor = new AnalogInput(1);
+    this.distanceSenor = new AnalogInput(Constants.storageSensor);
 
     setDefaultCommand(new StorageDefault(this));
   }
@@ -76,10 +76,6 @@ public class StorageSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    
-    
-
-
-   // SmartDashboard.putNumber("distance sensor", getDistanceSensor());
+   SmartDashboard.putNumber("storage sensor", getDistanceSensor());
   }
 }
