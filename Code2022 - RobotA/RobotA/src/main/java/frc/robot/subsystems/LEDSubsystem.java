@@ -38,10 +38,10 @@ public class LEDSubsystem extends SubsystemBase {
         ledStrip.staticRGB(0, 109, 254);
       }
       else if (ClimbBase.moving > 0){// climbing up
-
+        ledStrip.movingRGB(10, 0, 40, 254, 10, false);
       }
       else  if (ClimbBase.moving < 0){// climbing down
-
+        ledStrip.movingRGB(10, 0, 40, 254, 10, true);
       }
     }
   }
