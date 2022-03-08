@@ -77,5 +77,6 @@ public class StorageSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
    SmartDashboard.putNumber("storage sensor", getDistanceSensor());
+   SmartDashboard.putBoolean("Storage ball in", (this.getDistanceSensor() >= Constants.minDetection && this.getDistanceSensor() <= Constants.maxDetection));
   }
 }

@@ -76,7 +76,7 @@ public class ShooterBase extends SubsystemBase {
   }
   //Zeroing the motors
   public void zeroShooterMotors(){
-   
+    velocityTarget = 0;
     this.shootingWheels.set(TalonFXControlMode.PercentOutput, 0);
   }
 
@@ -103,6 +103,7 @@ public void print(){
   @Override
   public void periodic() {
     velocity = getShooterVelocity();
-    //SmartDashboard.putNumber("shooter velocity", getShooterVelocity());
+    SmartDashboard.putNumber("shooter velocity", getShooterVelocity());
+    SmartDashboard.putNumber("shooter velocity target", velocityTarget);
   }
 }

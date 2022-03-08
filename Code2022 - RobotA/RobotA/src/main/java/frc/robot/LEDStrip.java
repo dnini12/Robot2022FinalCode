@@ -54,48 +54,51 @@ public class LEDStrip {
         run();
     }
     public void movingRGB(int delay, int r_value, int g_value, int b_value, int lightPart, boolean reverse){//you can do better by adding darkPart
-        tickM = (tick*delay)%(this.ledBuffer.getLength()/2);
-        if (reverse){
-            for(int i = (this.ledBuffer.getLength()/2)-1; i >(this.ledBuffer.getLength()/2)-1-tickM; i--){
-                this.ledBuffer.setRGB(i, 0, 0, 0);
-            }
-            for(int i = (this.ledBuffer.getLength()/2)-1-tickM; i > ((this.ledBuffer.getLength()/2)-1-tickM)-lightPart; i--){
-                this.ledBuffer.setRGB(i, r_value, g_value, b_value);
-            }
-            for(int i = ((this.ledBuffer.getLength()/2)-1-tickM)-lightPart; i >= 0; i--){
-                this.ledBuffer.setRGB(i, 0, 0, 0);
-            }
-            //
-            for(int i = this.ledBuffer.getLength()/2; i < (this.ledBuffer.getLength()/2)+tickM; i++){
-                this.ledBuffer.setRGB(i, 0, 0, 0);
-            }
-            for(int i = (this.ledBuffer.getLength()/2)+tickM; i < (this.ledBuffer.getLength()/2)+tickM + lightPart; i++){
-                this.ledBuffer.setRGB(i, r_value, g_value, b_value);
-            }
-            for(int i = (this.ledBuffer.getLength()/2) + tickM + lightPart; i < this.ledBuffer.getLength(); i++){
-                this.ledBuffer.setRGB(i, 0, 0, 0);
-            }
+        //tickM = (tick/delay)%();
+        // if (reverse){
+        //     for(int i = (this.ledBuffer.getLength()/2)-1; i >(this.ledBuffer.getLength()/2)-1-tickM; i--){
+        //         this.ledBuffer.setRGB(i, 0, 0, 0);
+        //     }
+        //     for(int i = (this.ledBuffer.getLength()/2)-1-tickM; i > ((this.ledBuffer.getLength()/2)-1-tickM)-lightPart; i--){
+        //         this.ledBuffer.setRGB(i, r_value, g_value, b_value);
+        //     }
+        //     for(int i = ((this.ledBuffer.getLength()/2)-1-tickM)-lightPart; i >= 0; i--){
+        //         this.ledBuffer.setRGB(i, 0, 0, 0);
+        //     }
+        //     //
+        //     for(int i = this.ledBuffer.getLength()/2; i < (this.ledBuffer.getLength()/2)+tickM; i++){
+        //         this.ledBuffer.setRGB(i, 0, 0, 0);
+        //     }
+        //     for(int i = (this.ledBuffer.getLength()/2)+tickM; i < (this.ledBuffer.getLength()/2)+tickM + lightPart; i++){
+        //         this.ledBuffer.setRGB(i, r_value, g_value, b_value);
+        //     }
+        //     for(int i = (this.ledBuffer.getLength()/2) + tickM + lightPart; i < this.ledBuffer.getLength(); i++){
+        //         this.ledBuffer.setRGB(i, 0, 0, 0);
+        //     }
 
-            return;
-        }
-        for(int i = 0; i < tickM; i++){
-            this.ledBuffer.setRGB(i, 0, 0, 0);
-        }
-        for(int i = tickM; i < tickM + lightPart; i++){
-            this.ledBuffer.setRGB(i, r_value, g_value, b_value);
-        }
-        for(int i = tickM + lightPart; i < this.ledBuffer.getLength()/2; i++){
-            this.ledBuffer.setRGB(i, 0, 0, 0);
-        }
-        //
-        for(int i = this.ledBuffer.getLength()-1; i > this.ledBuffer.getLength()-1-tickM; i--){
-            this.ledBuffer.setRGB(i, 0, 0, 0);
-        }
-        for(int i = this.ledBuffer.getLength()-2-tickM; i > (this.ledBuffer.getLength()-1-tickM) - lightPart; i--){
-            this.ledBuffer.setRGB(i, r_value, g_value, b_value);
-        }
-        for(int i = (this.ledBuffer.getLength()-1-tickM) - lightPart; i >= this.ledBuffer.getLength()/2; i--){
-            this.ledBuffer.setRGB(i, 0, 0, 0);
-        }
+        //     return;
+        // }
+        // for(int i = 0; i < tickM; i++){
+        //     this.ledBuffer.setRGB(i, 0, 0, 0);
+        // }
+        // for(int i = tickM; i < tickM + lightPart; i++){
+        //     this.ledBuffer.setRGB(i, r_value, g_value, b_value);
+        // }
+        // for(int i = tickM + lightPart; i < this.ledBuffer.getLength()/2; i++){
+        //     this.ledBuffer.setRGB(i, 0, 0, 0);
+        // }
+        // //
+        // for(int i = this.ledBuffer.getLength()-1; i > this.ledBuffer.getLength()-1-tickM; i--){
+        //     this.ledBuffer.setRGB(i, 0, 0, 0);
+        // }
+        // for(int i = this.ledBuffer.getLength()-2-tickM; i > (this.ledBuffer.getLength()-1-tickM) - lightPart; i--){
+        //     this.ledBuffer.setRGB(i, r_value, g_value, b_value);
+        // }
+        // for(int i = (this.ledBuffer.getLength()-1-tickM) - lightPart; i >= this.ledBuffer.getLength()/2; i--){
+        //     this.ledBuffer.setRGB(i, 0, 0, 0);
+        // }
+
+        run();
+
     }
 }

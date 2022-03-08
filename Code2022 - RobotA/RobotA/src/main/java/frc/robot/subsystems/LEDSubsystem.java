@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.LEDStrip;
 
@@ -21,27 +22,35 @@ public class LEDSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    //ledStrip.staticRGB(0, 109, 254);
-    if (ShooterBase.velocityTarget>0){//shooting
-      if (Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget)<2){
-        ledStrip.blinkRGB(((int)(ShooterBase.velocityTarget/ShooterBase.velocity))*20,0,255,0);
+    ledStrip.movingRGB(10, 255, 0, 255, 10, false);
+    if(false){
+      return;
+    }
+    //int delay = ((int)(10/(ShooterBase.velocity+0.001)));
+
+    // SmartDashboard.putNumber("Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget)", Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget));
+    // SmartDashboard.putBoolean("amit tambal",delay!=0);
+    
+    if (ShooterBase.velocityTarget>1||ShooterBase.velocity>1){//shooting
+      if (Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget)<5&&ShooterBase.velocityTarget!=0){
+        ledStrip.staticRGB(0, 255, 0);
       }
-      else if(ShooterBase.velocity>5){
-        ledStrip.blinkRGB(((int)(ShooterBase.velocityTarget/ShooterBase.velocity))*20,255,255,100);
+      else if(ShooterBase.velocity>2){
+        ledStrip.staticRGB(255,255,100);
       }
-      else{//starting to get velocity
-        ledStrip.staticRGB(255,255,254);
+      else{//starting to get velocity or got to velocity
+        ledStrip.staticRGB(255,255,0);
       }
     }
     else{
       if (ClimbBase.moving == 0){//just driving
-        ledStrip.staticRGB(0, 109, 254);
+        ledStrip.staticRGB(0, 109/2, 254/2);
       }
       else if (ClimbBase.moving > 0){// climbing up
-        ledStrip.movingRGB(10, 0, 40, 254, 10, false);
+        ledStrip.staticRGB(255, 0, 255);
       }
       else  if (ClimbBase.moving < 0){// climbing down
-        ledStrip.movingRGB(10, 0, 40, 254, 10, true);
+        ledStrip.staticRGB(255, 0, 0);
       }
     }
   }
