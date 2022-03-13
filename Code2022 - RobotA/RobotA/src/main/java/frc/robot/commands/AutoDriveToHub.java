@@ -24,7 +24,7 @@ public class AutoDriveToHub extends CommandBase {
   private double pidI = 0; 
   private double pidD = 0; 
   private PIDController pidController;
-  private double maxPowerDrive = 0.6;
+  private double maxPowerDrive = 0.8;
 
   public AutoDriveToHub(DriveBase drivebase, LimelightBase limelight) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -42,7 +42,7 @@ public class AutoDriveToHub extends CommandBase {
   public void initialize() {
     this.limelightAngleRadians = (FieldAndRobot.limelightAngleDegrees + this.limelight.getY()) * (Math.PI / 180);
     this.distanceToHub = FieldAndRobot.heightForCalculation / Math.tan(this.limelightAngleRadians);
-    pidController.setSetpoint(1.75);
+    pidController.setSetpoint(2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -54,7 +54,7 @@ public class AutoDriveToHub extends CommandBase {
     this.drivebase.setVelocity(powerForward - this.limelight.getX() * Drive.limelightRotationProportion, powerForward + this.limelight.getX() * Drive.limelightRotationProportion);
     // this.drivebase.setPower(-powerForward, -powerForward);
     //this.drivebase.setPower(this.limelight.getX() * Drive.limelightRotationProportion, -this.limelight.getX() * Drive.limelightRotationProportion);
-    SmartDashboard.putNumber("distance", this.distanceToHub);
+    //SmartDashboard.putNumber("distance", this.distanceToHub);
   }
 
   // Called once the command ends or is interrupted.

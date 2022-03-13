@@ -56,9 +56,9 @@ public class ShooterBase extends SubsystemBase {
   //Shoot out balls by speed
   public void setVelocityShooter(double v){
     this.shootingWheels.set(TalonFXControlMode.Velocity, v/Constants.shooterPulseToMeter/10, DemandType.ArbitraryFeedForward,feedforward.calculate(v));  
-    SmartDashboard.putNumber("Velocity target",  v/Constants.shooterPulseToMeter/10);
+    //SmartDashboard.putNumber("Velocity target",  v/Constants.shooterPulseToMeter/10);
     velocityTarget = v;
-    SmartDashboard.putNumber("shooter velocity now", getShooterVelocity());
+    //SmartDashboard.putNumber("shooter velocity now", getShooterVelocity());
   }
 
   //Changes angle of shooter up
@@ -104,6 +104,6 @@ public void print(){
   public void periodic() {
     velocity = getShooterVelocity();
     SmartDashboard.putNumber("shooter velocity", getShooterVelocity());
-    SmartDashboard.putNumber("shooter velocity target", velocityTarget);
+    //SmartDashboard.putNumber("shooter velocity target", velocityTarget);
   }
 }

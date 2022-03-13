@@ -19,7 +19,7 @@ import frc.robot.commands.ChangeIntakeRotation;
 
 public class IntakeBase extends SubsystemBase {
   /** Creates a new IntakeBase. */
-  private VictorSPX angleMotor; //Motor that changes angle of intake (up or down)
+  private CANSparkMax angleMotor; //Motor that changes angle of intake (up or down)
   private CANSparkMax intakeMotor; //Motor that sucks balls and spits them out ;)
   
 
@@ -31,7 +31,7 @@ public class IntakeBase extends SubsystemBase {
   private double angleSpeedLower = Constants.intakeAngleSpeedLower; //Speed to lower the intake
 
   public IntakeBase() {
-    this.angleMotor = new VictorSPX(Constants.intakeAngleMotor);
+    this.angleMotor = new CANSparkMax(Constants.intakeAngleMotor, MotorType.kBrushless);
     this.intakeMotor = new CANSparkMax(Constants.intakeMotor, MotorType.kBrushless);
     this.lowLimitSwitch = new DigitalInput(Constants.lowLimitSwitch);
     this.topLimitSwitch = new DigitalInput(Constants.topLimitSwitch);
@@ -59,19 +59,19 @@ public class IntakeBase extends SubsystemBase {
 
   //Raises the intake angle
   public void raiseIntake(){
-    this.angleMotor.set(ControlMode.PercentOutput, -this.angleSpeedRaise);
+    this.angleMotor.set(-this.angleSpeedRaise);
   }
 
   //Lowers the intake angle
   public void lowerIntake(){
-    this.angleMotor.set(ControlMode.PercentOutput, this.angleSpeedLower);
+    this.angleMotor.set( this.angleSpeedLower);
   }
 
   public void zeroIntakeMotor(){
     this.intakeMotor.set(0);
   }
   public void zeroAngleMotor(){
-    this.angleMotor.set(ControlMode.PercentOutput, 0);
+    this.angleMotor.set(0);
   }
 
   @Override
@@ -92,15 +92,15 @@ public class IntakeBase extends SubsystemBase {
       this.zeroIntakeMotor();
     }
 
-    if (OI.getXboxController().getLeftY()<-0.1) {
-      this.raiseIntake();
-    }
-    else if (OI.getXboxController().getLeftY()>0.1) {
-      this.lowerIntake();
-    }
-    else{
-      this.zeroAngleMotor();
-    }
+     if (OI.getXboxController().getLeftY()<-0.1) {
+       this.raiseIntake();
+     }
+     else if (OI.getXboxController().getLeftY()>0.1) {
+       this.lowerIntake();
+     }
+     else{
+       this.zeroAngleMotor();
+     }
     SmartDashboard.putBoolean("Upper intake", getTopSwitch());
     SmartDashboard.putBoolean("lower intake", getLowSwitch());
   }

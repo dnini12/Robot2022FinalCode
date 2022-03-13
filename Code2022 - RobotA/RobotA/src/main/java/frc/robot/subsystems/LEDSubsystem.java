@@ -6,9 +6,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.LEDStrip;
+import frc.robot.Robot;
 
 public class LEDSubsystem extends SubsystemBase {
   /** Creates a new LEDSubsystem. */
@@ -23,9 +26,15 @@ public class LEDSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     ledStrip.movingRGB(10, 255, 0, 255, 10, false);
-    if(false){
-      return;
+    if(Robot.matchStarted){
+      SmartDashboard.putNumber("Timer", Timer.getFPGATimestamp());
     }
+    else{
+      SmartDashboard.putNumber("Timer", -999);
+    }
+    // if(false){
+    //   return;
+    // }
     //int delay = ((int)(10/(ShooterBase.velocity+0.001)));
 
     // SmartDashboard.putNumber("Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget)", Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget));

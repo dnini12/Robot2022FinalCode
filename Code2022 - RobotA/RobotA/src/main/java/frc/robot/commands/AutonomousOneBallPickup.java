@@ -40,15 +40,15 @@ public class AutonomousOneBallPickup extends SequentialCommandGroup {
     this.storageSubsystem = storageSubsystem;
     
     addCommands(
-      new ChangeIntakeRotation(this.intakeBase),
-      new ParallelRaceGroup(new CollectBall(this.intakeBase, this.storageSubsystem),new DriveForward(this.driveBase), new WaitCommand(2)),
+      //new ParallelRaceGroup(new ChangeIntakeRotation(this.intakeBase),new WaitCommand(1)),
+      new ParallelRaceGroup(new CollectBall(this.intakeBase, this.storageSubsystem),new DriveForward(this.driveBase), new WaitCommand(1.5)),
       new ParallelRaceGroup(new CollectBall(this.intakeBase, this.storageSubsystem),new WaitCommand(0.5)),
       new ParallelRaceGroup(new CollectBall(this.intakeBase, this.storageSubsystem),new DriveForward(this.driveBase), new WaitCommand(0.1)),
       new ParallelRaceGroup(new Turn180Degrees(this.driveBase),new WaitCommand(2)),
       new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setLowStorage(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(0.4)),      
-      new ParallelRaceGroup(new DriveForward(this.driveBase),new WaitCommand(2)),
-      new ChangeIntakeRotation(this.intakeBase),
-      new AutoDriveToHub(this.driveBase, this.limelightBase),
+      new ParallelRaceGroup(new DriveForward(this.driveBase),new WaitCommand(1)),
+      //new ParallelRaceGroup(new ChangeIntakeRotation(this.intakeBase),new WaitCommand(1)),
+      new ParallelRaceGroup(new AutoDriveToHub(this.driveBase, this.limelightBase),new WaitCommand(2.5)),
       //new ParallelRaceGroup(new WaitCommand(1),new StartEndCommand(()->this.storageSubsystem.setBackwards(),()->this.storageSubsystem.zeroAllMotors(),this.storageSubsystem)),
       new ParallelRaceGroup(new ShootAuto(this.shooterBase),new WaitCommand(2)),
       new ParallelRaceGroup(new WaitCommand(0.2),new StartEndCommand(()->this.storageSubsystem.setLowStorageBack(),()->this.storageSubsystem.zeroAllMotors())),

@@ -36,6 +36,7 @@ public class SetShooterSpeed extends CommandBase {
   @Override
   public void execute() {
     SmartDashboard.putNumber("shooter velocity now", this.shooterBase.getShooterVelocity());
+
   }
 
   // Called once the command ends or is interrupted.

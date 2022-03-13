@@ -61,6 +61,10 @@ public class OI {
         return (rightJoystick.getY() > Constants.OIDeadzone || rightJoystick.getY() < -Constants.OIDeadzone)?(-rightJoystick.getY()):(0);
     }
 
+    public static boolean getJoystickTrigger(){
+        return rightJoystick.getTrigger() || leftJoystick.getTrigger();
+    }
+
     public OI(StorageSubsystem storageSubsystem, IntakeBase intakeBase, DriveBase driveBase,ShooterBase shooterBase, ClimbBase climbBase){
         this.driveBase = driveBase;
         this.intakeBase = intakeBase;

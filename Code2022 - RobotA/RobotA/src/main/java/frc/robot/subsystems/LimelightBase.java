@@ -19,6 +19,7 @@ public class LimelightBase extends SubsystemBase {
   NetworkTableEntry ta;
   NetworkTableEntry tv;
 
+  public static boolean onTarget;
   public LimelightBase() {
     tx = table.getEntry("tx");//x axis
     ty = table.getEntry("ty");//y axis
@@ -49,10 +50,8 @@ public class LimelightBase extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("tx", getX());
-    SmartDashboard.putNumber("ty", getY());
-    SmartDashboard.putNumber("ta", getA());
-    SmartDashboard.putNumber("tv", getV());
     SmartDashboard.putNumber("limelight distance hub", getDistanceFromHub());
+    onTarget = this.getX()>-5 && this.getX()<5;
+    SmartDashboard.putBoolean("On Target", onTarget);
   }
 }

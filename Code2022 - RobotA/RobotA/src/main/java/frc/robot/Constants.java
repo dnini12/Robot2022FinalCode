@@ -37,8 +37,8 @@ public final class Constants {
 
     public static final double shootingSpeedDeadzone = 0.0;
 
-    public static final double shootingFromHubVelocity = 20;
-    public static final double shootingFromHubVelocityAuto = 20;
+    public static final double shootingFromHubVelocity = 18.5;
+    public static final double shootingFromHubVelocityAuto = 18.54;
     public static final double shootingFromLaunchpadVelocity = 0.0;
 
     public static final double shooterPulseToMeter = 0.4788/2048;
@@ -57,10 +57,10 @@ public final class Constants {
     public static final int angleFrontSwitch = 99;
 
     //Storage
-    public static final double storagePower = 0.9;//power that the storage system motors use
+    public static final double storagePower = 0.6;//power that the storage system motors use
     public static final double storagePowerAuto = 0.9;
-    public static final double maxDetection = 2.3;//max measurment when we detect the ball
-    public static final double minDetection = 1.4;//min measurment when we detect the ball
+    public static final double maxDetection = 3;//max measurment when we detect the ball
+    public static final double minDetection = 1.2;//min measurment when we detect the ball
     public static final int storageLowerMotor = 15;
     public static final int storageUpperMotor = 20;
     public static final int storageSensor = 0;

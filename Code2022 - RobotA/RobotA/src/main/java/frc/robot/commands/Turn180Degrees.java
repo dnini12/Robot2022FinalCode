@@ -51,10 +51,10 @@ public class Turn180Degrees extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putNumber("setpoint",this.setPoint);
+    //SmartDashboard.putNumber("setpoint",this.setPoint);
     double power = this.TurnPID.calculate(this.driveBase.getGyroYaw(),this.setPoint)>0?Math.min(this.TurnPID.calculate(this.driveBase.getGyroYaw(),this.setPoint), this.maxRange):Math.max(this.TurnPID.calculate(this.driveBase.getGyroYaw(),this.setPoint), -this.maxRange);
     this.driveBase.setPower(-power, power);
-    SmartDashboard.putNumber("power",power);
+    //SmartDashboard.putNumber("power",power);
   }
 
   // Called once the command ends or is interrupted.
