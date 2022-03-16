@@ -23,7 +23,7 @@ public final class Constants {
     public static final int topLimitSwitch = 1; //Connection for imit switch pressed when intake is upright
     public static final int lowLimitSwitch = 0; //Connection for imit switch pressed when intake is down
     public static final double intakeSpeed = 1; //Speed to swallow balls with ;)
-    public static final double intakeAngleSpeedRaise = 1; //Speed to raise intake with
+    public static final double intakeAngleSpeedRaise = 0.8; //Speed to raise intake with
     public static final double intakeAngleSpeedLower = 0.4; //Speed to lower intake with
 
 
@@ -38,7 +38,7 @@ public final class Constants {
     public static final double shootingSpeedDeadzone = 0.0;
 
     public static final double shootingFromHubVelocity = 18.5;
-    public static final double shootingFromHubVelocityAuto = 18.54;
+    public static final double shootingFromHubVelocityAuto = 18.5;
     public static final double shootingFromLaunchpadVelocity = 0.0;
 
     public static final double shooterPulseToMeter = 0.4788/2048;
@@ -48,7 +48,7 @@ public final class Constants {
     public static final int climbTipAngleMotor = 17; //Connection for motor that tips the robot while hanging
     public static final double climbElevatorSpeedUp = 0.4; //Speed for which elevator goes up at
     public static final double climbElevatorSpeedDown = -1;
-    public static final double climbTipSpeed = 0; //Speed for which angle to tip at
+    public static final double climbTipSpeed = 0.4; //Speed for which angle to tip at
     public static final double climbElevatorEncoderToMeter = 0;//How many ticks for a meter(Elevator)
     public static final double climbAngleEncoderToAngle = 0;//How many ticks for 1(Angle)
     public static final int elevatorClimbLowerSwitch = 3;
@@ -81,10 +81,10 @@ public final class Constants {
     public static final int driveRightLowerMotor = 18;
     public static final double limelightRotationProportion = 0.03;
 
-    public static final double drivebaseEncoderPerMeter = 43050;
+    public static final double drivebaseEncoderPerMeter = 45700;
     public static final double maxPower = 0.6;
 
-    public static final double drivePulseToMeter = (double)1/42730;
+    public static final double drivePulseToMeter = (double)1/45700;
     }
 
     //Field & Robot

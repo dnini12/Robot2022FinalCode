@@ -59,12 +59,12 @@ public class IntakeBase extends SubsystemBase {
 
   //Raises the intake angle
   public void raiseIntake(){
-    this.angleMotor.set(-this.angleSpeedRaise);
+    this.angleMotor.set(this.angleSpeedRaise);
   }
 
   //Lowers the intake angle
   public void lowerIntake(){
-    this.angleMotor.set( this.angleSpeedLower);
+    this.angleMotor.set(-this.angleSpeedLower);
   }
 
   public void zeroIntakeMotor(){

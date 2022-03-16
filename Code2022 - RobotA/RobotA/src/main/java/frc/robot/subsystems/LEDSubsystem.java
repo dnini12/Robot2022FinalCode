@@ -27,7 +27,7 @@ public class LEDSubsystem extends SubsystemBase {
   public void periodic() {
     ledStrip.movingRGB(10, 255, 0, 255, 10, false);
     if(Robot.matchStarted){
-      SmartDashboard.putNumber("Timer", Timer.getFPGATimestamp());
+      SmartDashboard.putNumber("Timer", Timer.getMatchTime());
     }
     else{
       SmartDashboard.putNumber("Timer", -999);

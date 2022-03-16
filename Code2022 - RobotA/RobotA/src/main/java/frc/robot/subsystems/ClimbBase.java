@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -33,6 +34,7 @@ public class ClimbBase extends SubsystemBase {
     
     this.elevateMotor = new TalonFX(Constants.climbElevateMotor);
     this.tipAngleMotor = new TalonFX(Constants.climbTipAngleMotor);
+    this.tipAngleMotor.setNeutralMode(NeutralMode.Brake);
     this.elevateMotor.setNeutralMode(NeutralMode.Brake);
     this.elevateMotor.setInverted(true);
     this.elevatorLowerSwitch = new DigitalInput(Constants.elevatorClimbLowerSwitch);
@@ -61,10 +63,10 @@ public class ClimbBase extends SubsystemBase {
 
   //tips robot
   public void tipForwardRobotElevator(){
-    this.tipAngleMotor.set(TalonFXControlMode.PercentOutput, tipSpeed);
+    this.tipAngleMotor.set(ControlMode.PercentOutput, tipSpeed);
   }
   public void tipBackwardsRobotElevator(){
-    this.tipAngleMotor.set(TalonFXControlMode.PercentOutput, -tipSpeed);
+    this.tipAngleMotor.set(ControlMode.PercentOutput, -tipSpeed);
   }
 
   public void zeroAngleMotor(){

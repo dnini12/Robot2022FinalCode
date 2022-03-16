@@ -4,11 +4,17 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-
+import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.AutoDriveToHub;
 import frc.robot.commands.AutonomousOneBallPickup;
@@ -41,6 +47,7 @@ public class RobotContainer {
   public final OI robot_oi = new OI(storageSubsystem, intakeBase, driveBase, shooterBase, climbBase);
   public final LimelightBase limelightBase = new LimelightBase();
   public final LEDSubsystem ledSubsystem = new LEDSubsystem();
+  Trajectory t = new Trajectory();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -63,10 +70,28 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    //return new InstantCommand(()-> shooterBase.setVelocityShooter(18), shooterBase).andThen(new WaitCommand(1), new InstantCommand(()-> shooterBase.print(),shooterBase),
-    //new InstantCommand(()-> shooterBase.setPowerShooter(0), shooterBase));
-    return new AutonomousOneBallPickup(this.driveBase, this.shooterBase, this.limelightBase, this.intakeBase, this.storageSubsystem);
+    //return new InstantCommand(()-> driveBase.setVelocity(1,1), driveBase).andThen(new WaitCommand(1.5), new InstantCommand(()-> driveBase.print(),driveBase),
+    //new InstantCommand(()-> driveBase.setPower(0,0), driveBase));
+    //return new AutonomousOneBallPickup(this.driveBase, this.shooterBase, this.limelightBase, this.intakeBase, this.storageSubsystem);
     //return new AutoDriveToHub(this.driveBase, this.limelightBase);
     //return new Turn180Degrees(driveBase);
+    
+    
+    try {
+      t = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve("Path1.wpilib.json"));
+
+    } catch (Exception e) {
+      System.out.println(" Error reading jsoon " + e);
+    }
+    RamseteCommand command = new RamseteCommand(
+      t,
+      driveBase::getPose,
+      new RamseteController(2, 0.7),
+      driveBase.getKinematics(),
+      driveBase::setVelocity,
+      driveBase
+      );
+      
+      return new InstantCommand(()->driveBase.SetPose(t.getInitialPose()), driveBase).andThen(command);
   }
 }
