@@ -37,7 +37,7 @@ public final class Constants {
 
     public static final double shootingSpeedDeadzone = 0.0;
 
-    public static final double shootingFromHubVelocity = 18.5;
+    public static final double shootingFromHubVelocity = 19;
     public static final double shootingFromHubVelocityAuto = 18.5;
     public static final double shootingFromLaunchpadVelocity = 0.0;
 
@@ -58,7 +58,7 @@ public final class Constants {
 
     //Storage
     public static final double storagePower = 0.6;//power that the storage system motors use
-    public static final double storagePowerAuto = 0.9;
+    public static final double storagePowerAuto = 0.6;
     public static final double maxDetection = 3;//max measurment when we detect the ball
     public static final double minDetection = 1.2;//min measurment when we detect the ball
     public static final int storageLowerMotor = 15;
@@ -70,6 +70,7 @@ public final class Constants {
     public static final int rightJoystickPort = 0;
     public static final int xboxControllerPort = 2;
     public static final double OIDeadzone = 0.175;
+    
 
     
 
@@ -90,7 +91,7 @@ public final class Constants {
     //Field & Robot
     public static class FieldAndRobot{
         public static final double upperHubHeight = 2.64; //in meters
-        public static final double limelightAngleDegrees = 23;
+        public static final double limelightAngleDegrees = 30;
         public static final double limelightHeight = 0.81;
         public static final double heightForCalculation = upperHubHeight - limelightHeight;
         public static final double leftoverDist = 0; //distance from when 'AutoDriveToHub' ends to target distance from hub

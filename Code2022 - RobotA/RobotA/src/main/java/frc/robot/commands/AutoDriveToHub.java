@@ -66,6 +66,6 @@ public class AutoDriveToHub extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return this.pidController.atSetpoint() && (this.limelight.getX()>-2 && this.limelight.getX()<2);
+    return (this.pidController.atSetpoint() && (this.limelight.getX()>-2 && (this.limelight.getX()<2))||this.limelight.getA()<1) || this.limelight.getA()>40;
   }
 }

@@ -71,7 +71,7 @@ public class Autonomous3BallsAndPickup extends SequentialCommandGroup {
       new ParallelRaceGroup(new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto), new WaitCommand(1.5)),
       new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setTopStorage(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(0.4)),
       new InstantCommand(()->shooterBase.setPowerShooter(0), shooterBase),
-      // new ParallelRaceGroup(new ChangeIntakeRotation(intakeBase), new WaitCommand(1)),
+      new ParallelRaceGroup(new ChangeIntakeRotation(intakeBase), new WaitCommand(1)),
       new InstantCommand(()->intakeBase.intakeIn(), intakeBase),
       new InstantCommand(()->storageSubsystem.setLowStorage(), storageSubsystem),
       new InstantCommand(()->driveBase.SetPose(threeBalls.getInitialPose()), driveBase),

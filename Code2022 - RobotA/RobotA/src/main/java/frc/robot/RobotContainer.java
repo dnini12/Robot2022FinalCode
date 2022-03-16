@@ -44,9 +44,10 @@ public class RobotContainer {
   public final ShooterBase shooterBase = new ShooterBase();
   public final StorageSubsystem storageSubsystem = new StorageSubsystem();
   public final ClimbBase climbBase = new ClimbBase();
-  public final OI robot_oi = new OI(storageSubsystem, intakeBase, driveBase, shooterBase, climbBase);
   public final LimelightBase limelightBase = new LimelightBase();
   public final LEDSubsystem ledSubsystem = new LEDSubsystem();
+  public final OI robot_oi = new OI(storageSubsystem, intakeBase, driveBase, shooterBase, climbBase, limelightBase);
+  
   Trajectory t = new Trajectory();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */

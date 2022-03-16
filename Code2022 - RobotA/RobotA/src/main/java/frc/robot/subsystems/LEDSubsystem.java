@@ -15,6 +15,8 @@ import frc.robot.Robot;
 
 public class LEDSubsystem extends SubsystemBase {
   /** Creates a new LEDSubsystem. */
+  public static boolean shoot;
+
   LEDStrip ledStrip;
 
   //public static boolean enabled
@@ -25,23 +27,20 @@ public class LEDSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    ledStrip.movingRGB(10, 255, 0, 255, 10, false);
+    //ledStrip.movingRGB(10, 255, 0, 255, 10, false);
     if(Robot.matchStarted){
       SmartDashboard.putNumber("Timer", Timer.getMatchTime());
     }
     else{
       SmartDashboard.putNumber("Timer", -999);
     }
-    // if(false){
-    //   return;
-    // }
-    //int delay = ((int)(10/(ShooterBase.velocity+0.001)));
-
-    // SmartDashboard.putNumber("Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget)", Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget));
-    // SmartDashboard.putBoolean("amit tambal",delay!=0);
+    
     
     if (ShooterBase.velocityTarget>1||ShooterBase.velocity>1){//shooting
       if (Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget)<5&&ShooterBase.velocityTarget!=0){
+        if(shoot){
+          ledStrip.blinkRGB(40, 0, 255, 0);
+        }
         ledStrip.staticRGB(0, 255, 0);
       }
       else if(ShooterBase.velocity>2){

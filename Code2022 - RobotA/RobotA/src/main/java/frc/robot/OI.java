@@ -10,9 +10,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.Drive;
 import frc.robot.commands.ChangeIntakeRotation;
 import frc.robot.commands.SetShooterSpeed;
+import frc.robot.commands.TeleopShoot;
 import frc.robot.subsystems.ClimbBase;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.IntakeBase;
+import frc.robot.subsystems.LimelightBase;
 import frc.robot.subsystems.ShooterBase;
 import frc.robot.subsystems.StorageSubsystem;
 
@@ -65,7 +67,7 @@ public class OI {
         return rightJoystick.getTrigger() || leftJoystick.getTrigger();
     }
 
-    public OI(StorageSubsystem storageSubsystem, IntakeBase intakeBase, DriveBase driveBase,ShooterBase shooterBase, ClimbBase climbBase){
+    public OI(StorageSubsystem storageSubsystem, IntakeBase intakeBase, DriveBase driveBase,ShooterBase shooterBase, ClimbBase climbBase, LimelightBase limelightBase){
         this.driveBase = driveBase;
         this.intakeBase = intakeBase;
         this.shooterBase = shooterBase;
@@ -73,7 +75,7 @@ public class OI {
         this.climbBase = climbBase;
         this.aButton.whenPressed(new ChangeIntakeRotation(this.intakeBase));
         // this.leftBumber.whenPressed(new LockOnHub(RobotContainer.driveBase, RobotContainer.limelightBase));
-        
+        this.yButton.whenPressed(new TeleopShoot(driveBase, shooterBase, limelightBase, storageSubsystem));
         this.rightBumber.whenPressed(new SetShooterSpeed(this.shooterBase, Constants.shootingFromHubVelocity,this.storageSubsystem));       
     }
 }
