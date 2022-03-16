@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.AutoDriveToHub;
+import frc.robot.commands.Autonomous3Balls;
 import frc.robot.commands.AutonomousOneBallPickup;
 import frc.robot.commands.CollectBall;
 import frc.robot.commands.DriveForward;
@@ -75,23 +76,17 @@ public class RobotContainer {
     //return new AutonomousOneBallPickup(this.driveBase, this.shooterBase, this.limelightBase, this.intakeBase, this.storageSubsystem);
     //return new AutoDriveToHub(this.driveBase, this.limelightBase);
     //return new Turn180Degrees(driveBase);
+    return new Autonomous3Balls(driveBase, intakeBase, storageSubsystem, shooterBase);
     
-    
-    try {
-      t = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve("Path1.wpilib.json"));
-
-    } catch (Exception e) {
-      System.out.println(" Error reading jsoon " + e);
-    }
-    RamseteCommand command = new RamseteCommand(
-      t,
-      driveBase::getPose,
-      new RamseteController(2, 0.7),
-      driveBase.getKinematics(),
-      driveBase::setVelocity,
-      driveBase
-      );
+    // RamseteCommand command = new RamseteCommand(
+    //   t,
+    //   driveBase::getPose,
+    //   new RamseteController(2, 0.7),
+    //   driveBase.getKinematics(),
+    //   driveBase::setVelocity,
+    //   driveBase
+    //   );
       
-      return new InstantCommand(()->driveBase.SetPose(t.getInitialPose()), driveBase).andThen(command);
+    //   return new InstantCommand(()->driveBase.SetPose(t.getInitialPose()), driveBase).andThen(command);
   }
 }
