@@ -72,7 +72,7 @@ public class DriveBase extends SubsystemBase {
       t.config_kP(0, pidP);
       t.config_kI(0, pidI);
       t.config_kD(0, pidD);
-      t.setNeutralMode(NeutralMode.Brake);
+      t.setNeutralMode(NeutralMode.Coast);
       t.setSelectedSensorPosition(0);
     }
     return res;
@@ -95,7 +95,7 @@ public class DriveBase extends SubsystemBase {
 
     this.left = initMotors(Drive.driveLeftLowerMotor, Drive.driveLeftUpperMotor,false);
     this.right = initMotors(Drive.driveRightLowerMotor, Drive.driveRightUpperMotor,true);
-    SetPose(5, 4.1, Rotation2d.fromDegrees(0));
+    SetPose(7.65, 1.8, Rotation2d.fromDegrees(0));
     setDefaultCommand(new TeleopDrive(this));
     SmartDashboard.putData("Brake",new InstantCommmandInDisable(this::setBreak,this));
     SmartDashboard.putData("Coast",new InstantCommmandInDisable(this::setCoast,this));

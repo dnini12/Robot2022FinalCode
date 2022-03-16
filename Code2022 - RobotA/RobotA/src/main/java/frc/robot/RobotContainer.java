@@ -21,7 +21,6 @@ import frc.robot.commands.Autonomous3Balls;
 import frc.robot.commands.AutonomousOneBallPickup;
 import frc.robot.commands.CollectBall;
 import frc.robot.commands.DriveForward;
-import frc.robot.commands.DrivePerMeterAuto;
 import frc.robot.commands.Turn180Degrees;
 import frc.robot.subsystems.ClimbBase;
 import frc.robot.subsystems.DriveBase;
@@ -76,6 +75,9 @@ public class RobotContainer {
     //return new AutonomousOneBallPickup(this.driveBase, this.shooterBase, this.limelightBase, this.intakeBase, this.storageSubsystem);
     //return new AutoDriveToHub(this.driveBase, this.limelightBase);
     //return new Turn180Degrees(driveBase);
+
+    //return new InstantCommand(()->this.intakeBase.intakeIn(), this.intakeBase);
+
     return new Autonomous3Balls(driveBase, intakeBase, storageSubsystem, shooterBase);
     
     // RamseteCommand command = new RamseteCommand(

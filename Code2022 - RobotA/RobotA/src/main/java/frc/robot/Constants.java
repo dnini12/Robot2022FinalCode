@@ -23,7 +23,7 @@ public final class Constants {
     public static final int topLimitSwitch = 1; //Connection for imit switch pressed when intake is upright
     public static final int lowLimitSwitch = 0; //Connection for imit switch pressed when intake is down
     public static final double intakeSpeed = 1; //Speed to swallow balls with ;)
-    public static final double intakeAngleSpeedRaise = 0.8; //Speed to raise intake with
+    public static final double intakeAngleSpeedRaise = 0.6; //Speed to raise intake with
     public static final double intakeAngleSpeedLower = 0.4; //Speed to lower intake with
 
 

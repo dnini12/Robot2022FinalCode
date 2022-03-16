@@ -12,9 +12,9 @@ public class ShootAuto extends CommandBase {
   private ShooterBase shooterBase;
   private double targetVelocity;
   /** Creates a new SetShooterSpeed. */
-  public ShootAuto(ShooterBase shooterBase) {
+  public ShootAuto(ShooterBase shooterBase, double targetVelocity) {
     this.shooterBase = shooterBase;
-    this.targetVelocity = Constants.shootingFromHubVelocityAuto;
+    this.targetVelocity = targetVelocity;
     addRequirements(this.shooterBase);
     // Use addRequirements() here to declare subsystem dependencies.
   }

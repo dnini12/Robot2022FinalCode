@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.commands.ChangeIntakeRotation;
+import frc.robot.commands.IntakeDfault;
 
 public class IntakeBase extends SubsystemBase {
   /** Creates a new IntakeBase. */
@@ -35,6 +36,8 @@ public class IntakeBase extends SubsystemBase {
     this.intakeMotor = new CANSparkMax(Constants.intakeMotor, MotorType.kBrushless);
     this.lowLimitSwitch = new DigitalInput(Constants.lowLimitSwitch);
     this.topLimitSwitch = new DigitalInput(Constants.topLimitSwitch);
+
+    setDefaultCommand(new IntakeDfault(this));
   }
 
   //If the intake is upright
@@ -82,25 +85,7 @@ public class IntakeBase extends SubsystemBase {
 
 
 
-    if (OI.getXboxController().getBButton()) {
-      this.intakeIn();
-    }
-    else if (OI.getXboxController().getXButton()) {
-      this.intakeOut();
-    }
-    else{
-      this.zeroIntakeMotor();
-    }
-
-     if (OI.getXboxController().getLeftY()<-0.1) {
-       this.raiseIntake();
-     }
-     else if (OI.getXboxController().getLeftY()>0.1) {
-       this.lowerIntake();
-     }
-     else{
-       this.zeroAngleMotor();
-     }
+    
     SmartDashboard.putBoolean("Upper intake", getTopSwitch());
     SmartDashboard.putBoolean("lower intake", getLowSwitch());
   }

@@ -23,14 +23,16 @@ import frc.robot.subsystems.StorageSubsystem;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Autonomous3Balls extends SequentialCommandGroup {
+public class Autonomous3BallsAndPickup extends SequentialCommandGroup {
   /** Creates a new Autonomous3Balls. */
   DriveBase driveBase;
   IntakeBase intakeBase;
   StorageSubsystem storageSubsystem;
   ShooterBase shooterBase;
-  Trajectory t = new Trajectory();
-  public Autonomous3Balls(DriveBase driveBase, IntakeBase intakeBase, StorageSubsystem storageSubsystem, ShooterBase shooterBase) {
+  Trajectory threeBalls = new Trajectory();
+  Trajectory ballPickup = new Trajectory();
+
+  public Autonomous3BallsAndPickup(DriveBase driveBase, IntakeBase intakeBase, StorageSubsystem storageSubsystem, ShooterBase shooterBase) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     this.driveBase = driveBase;
@@ -39,13 +41,24 @@ public class Autonomous3Balls extends SequentialCommandGroup {
     this.shooterBase = shooterBase;
     
     try {
-      t = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve("3BallPath.wpilib.json"));
+      threeBalls = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve("3BallPath.wpilib.json"));
+      ballPickup = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve("Ball3to4,path.wpilib.json"));
+
 
     } catch (Exception e) {
       System.out.println(" Error reading json " + e);
     }
-    RamseteCommand trajectoryCommand = new RamseteCommand(
-      t,
+    RamseteCommand threeBallsCommand = new RamseteCommand(
+      threeBalls,
+      driveBase::getPose,
+      new RamseteController(2, 0.7),
+      driveBase.getKinematics(),
+      driveBase::setVelocity,
+      driveBase
+    );
+
+    RamseteCommand ballPickupCommand = new RamseteCommand(
+      ballPickup,
       driveBase::getPose,
       new RamseteController(2, 0.7),
       driveBase.getKinematics(),
@@ -61,12 +74,17 @@ public class Autonomous3Balls extends SequentialCommandGroup {
       // new ParallelRaceGroup(new ChangeIntakeRotation(intakeBase), new WaitCommand(1)),
       new InstantCommand(()->intakeBase.intakeIn(), intakeBase),
       new InstantCommand(()->storageSubsystem.setLowStorage(), storageSubsystem),
-      new InstantCommand(()->driveBase.SetPose(t.getInitialPose()), driveBase),
-      trajectoryCommand,
+      new InstantCommand(()->driveBase.SetPose(threeBalls.getInitialPose()), driveBase),
+      threeBallsCommand,
+      new InstantCommand(()->intakeBase.zeroIntakeMotor(), intakeBase),
       new ParallelRaceGroup(new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto), new WaitCommand(2.5)),
       new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setBackwards(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(0.3)),
       new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setForward(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(1.2)),
-      new InstantCommand(()->shooterBase.setPowerShooter(0), shooterBase)
+      new InstantCommand(()->shooterBase.setPowerShooter(0), shooterBase),
+      new InstantCommand(()->intakeBase.intakeIn(), intakeBase),
+      new InstantCommand(()->storageSubsystem.setLowStorage(), storageSubsystem),
+      ballPickupCommand,
+      new WaitCommand(1)
     );
   }
 }
