@@ -51,7 +51,8 @@ public class LimelightBase extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("limelight distance hub", getDistanceFromHub());
-    onTarget = this.getX()>-5 && this.getX()<5;
+    onTarget = this.getX()>-1 && this.getX()<1;
     SmartDashboard.putBoolean("On Target", onTarget);
+    LEDSubsystem.shoot = onTarget;
   }
 }

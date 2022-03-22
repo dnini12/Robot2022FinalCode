@@ -9,6 +9,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -17,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.IntakeBase;
+import frc.robot.subsystems.LimelightBase;
 import frc.robot.subsystems.ShooterBase;
 import frc.robot.subsystems.StorageSubsystem;
 
@@ -29,14 +31,16 @@ public class Autonomous3Balls extends SequentialCommandGroup {
   IntakeBase intakeBase;
   StorageSubsystem storageSubsystem;
   ShooterBase shooterBase;
+  LimelightBase limelightBase;
   Trajectory t = new Trajectory();
-  public Autonomous3Balls(DriveBase driveBase, IntakeBase intakeBase, StorageSubsystem storageSubsystem, ShooterBase shooterBase) {
+  public Autonomous3Balls(DriveBase driveBase, IntakeBase intakeBase, StorageSubsystem storageSubsystem, ShooterBase shooterBase, LimelightBase limelightBase) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     this.driveBase = driveBase;
     this.intakeBase = intakeBase;
     this.storageSubsystem = storageSubsystem;
     this.shooterBase = shooterBase;
+    this.limelightBase = limelightBase;
     
     try {
       t = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve("3BallPath.wpilib.json"));
@@ -55,17 +59,17 @@ public class Autonomous3Balls extends SequentialCommandGroup {
     
 
     addCommands(
-      new ParallelRaceGroup(new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto), new WaitCommand(1.5)),
-      new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setTopStorage(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(1.2),new ChangeIntakeRotation(intakeBase)),
+      new ParallelRaceGroup(new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto), new WaitCommand(1.3)),
+      new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setTopStorage(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(1.5),new ChangeIntakeRotation(intakeBase)),
       new InstantCommand(()->shooterBase.setPowerShooter(0), shooterBase),
-      //new Para(new ChangeIntakeRotation(intakeBase), new WaitCommand(3)),
       new InstantCommand(()->intakeBase.intakeIn(), intakeBase),
       new InstantCommand(()->storageSubsystem.setLowStorage(), storageSubsystem),
       new InstantCommand(()->driveBase.SetPose(t.getInitialPose()), driveBase),
-      trajectoryCommand,
-      new ParallelRaceGroup(new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto), new WaitCommand(1.5)),
-      new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setBackwards(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(0.3)),
-      new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setForward(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(1.2)),
+      new ParallelRaceGroup(trajectoryCommand,new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto)),    
+      new ParallelRaceGroup(new AimToHub(limelightBase, driveBase), new WaitCommand(0.7)),
+      new ParallelRaceGroup(new MoveStorageBackAuto(storageSubsystem), new WaitCommand(0.5)),
+      new ParallelRaceGroup(new MoveStorageAuto(storageSubsystem), new WaitCommand(0.6)),
+      new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setForward(),()->this.storageSubsystem.zeroAllMotors(),storageSubsystem), new WaitCommand(0.6)),
       new InstantCommand(()->shooterBase.setPowerShooter(0), shooterBase)
     );
   }

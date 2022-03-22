@@ -41,6 +41,7 @@ public class ClimbBase extends SubsystemBase {
     this.elevatorUpperSwitch = new DigitalInput(Constants.elevatorClimbUpperSwitch);
     //this.angleBackSwitch = new DigitalInput(Constants.angleBackSwitch);
     //this.angleFrontSwitch = new DigitalInput(Constants.angleFrontSwitch);
+    
     setDefaultCommand(new ClimbDefault(this));
     moving = 0;
     }

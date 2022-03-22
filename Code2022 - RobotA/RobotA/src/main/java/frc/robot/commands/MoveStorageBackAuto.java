@@ -4,29 +4,25 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.StorageSubsystem;
 
-public class MoveStorageAuto extends CommandBase {
-  /** Creates a new MoveStorageAuto. */
+public class MoveStorageBackAuto extends CommandBase {
+  /** Creates a new MoveStorageBackAuto. */
   StorageSubsystem storageSubsystem;
-  public MoveStorageAuto(StorageSubsystem storageSubsystem) {
+  public MoveStorageBackAuto(StorageSubsystem storageSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.storageSubsystem = storageSubsystem;
-    addRequirements(this.storageSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.storageSubsystem.setForward();
+    this.storageSubsystem.setBackwards();
   }
 
   // Called once the command ends or is interrupted.

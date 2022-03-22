@@ -25,10 +25,7 @@ public class StorageDefault extends CommandBase {
   @Override
   public void execute() {
     this.storageSubsystem.autonomusBallDetection();
-    if(OI.getXboxController().getLeftBumper()){
-      this.storageSubsystem.setTopStorage();
-    }
-    else if(OI.getXboxController().getLeftTriggerAxis()>0.02){
+    if(OI.getXboxController().getLeftTriggerAxis()>0.02){
       this.storageSubsystem.setBackwards();
     }
     else if(OI.getXboxController().getRightTriggerAxis()>0.02){

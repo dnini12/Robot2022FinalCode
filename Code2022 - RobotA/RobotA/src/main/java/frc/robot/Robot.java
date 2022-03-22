@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    Constants.ballDetected = false;
     m_robotContainer = new RobotContainer();
     matchStarted = false;
   }
@@ -65,6 +66,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autonomousCommand = (CommandBase) m_robotContainer.getAutonomousCommand();
     matchStarted = true;
+    Constants.ballDetected = false;
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();

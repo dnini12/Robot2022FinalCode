@@ -6,11 +6,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.Constants.Drive;
 import frc.robot.subsystems.DriveBase;
-import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LimelightBase;
 
-public class AimToHub extends CommandBase {
+public class AimToHubAuto extends CommandBase {
+  /** Creates a new AimToHubAuto. */
   private LimelightBase limelightBase;
   private DriveBase driveBase;
 
@@ -21,9 +23,9 @@ public class AimToHub extends CommandBase {
   private double pidD = 0.004;
 
   private double maxPowerDrive = 0.7;
-
   private PIDController pidHeading;
-  public AimToHub(LimelightBase limelightBase, DriveBase driveBase) {
+  public AimToHubAuto(LimelightBase limelightBase, DriveBase driveBase) {
+    // Use addRequirements() here to declare subsystem dependencies.
     this.driveBase = driveBase;
     this.limelightBase = limelightBase;
 
@@ -51,12 +53,12 @@ public class AimToHub extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    driveBase.setPower(0, 0);
+    this.driveBase.setPower(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pidHeading.atSetpoint()||limelightBase.getA()==0;
+    return Constants.ballDetected==false||(pidHeading.atSetpoint()||limelightBase.getA()==0);
   }
 }

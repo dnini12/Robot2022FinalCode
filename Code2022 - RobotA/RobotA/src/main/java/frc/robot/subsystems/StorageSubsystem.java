@@ -38,7 +38,7 @@ public class StorageSubsystem extends SubsystemBase {
   }
 
   public void setTopStorage(){
-    this.upperMotor.set(-Constants.storagePower);
+    this.upperMotor.set(-Constants.storagePowerAuto);
   }
 
   public void setLowStorage(){
@@ -76,6 +76,10 @@ public class StorageSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    if (this.getDistanceSensor() >= Constants.minDetection+0.3 && this.getDistanceSensor() <= Constants.maxDetection){
+      Constants.ballDetected = true;
+    }
+    SmartDashboard.putBoolean("ball detected", Constants.ballDetected);
    SmartDashboard.putNumber("storage sensor", getDistanceSensor());
    SmartDashboard.putBoolean("Storage ball in", (this.getDistanceSensor() >= Constants.minDetection && this.getDistanceSensor() <= Constants.maxDetection));
   }

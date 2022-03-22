@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.Drive;
+import frc.robot.commands.AimToHub;
 import frc.robot.commands.ChangeIntakeRotation;
 import frc.robot.commands.SetShooterSpeed;
 import frc.robot.commands.TeleopShoot;
@@ -76,6 +77,7 @@ public class OI {
         this.aButton.whenPressed(new ChangeIntakeRotation(this.intakeBase));
         // this.leftBumber.whenPressed(new LockOnHub(RobotContainer.driveBase, RobotContainer.limelightBase));
         this.yButton.whenPressed(new TeleopShoot(driveBase, shooterBase, limelightBase, storageSubsystem));
-        this.rightBumber.whenPressed(new SetShooterSpeed(this.shooterBase, Constants.shootingFromHubVelocity,this.storageSubsystem));       
+        this.rightBumber.whenPressed(new SetShooterSpeed(this.shooterBase, Constants.shootingFromHubVelocity,this.storageSubsystem)); 
+        this.leftBumber.whenPressed(new AimToHub(limelightBase, driveBase));     
     }
 }

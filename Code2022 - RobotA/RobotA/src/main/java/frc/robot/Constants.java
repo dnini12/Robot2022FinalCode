@@ -38,7 +38,7 @@ public final class Constants {
     public static final double shootingSpeedDeadzone = 0.0;
 
     public static final double shootingFromHubVelocity = 19;
-    public static final double shootingFromHubVelocityAuto = 18.5;
+    public static final double shootingFromHubVelocityAuto = 19.5;
     public static final double shootingFromLaunchpadVelocity = 0.0;
 
     public static final double shooterPulseToMeter = 0.4788/2048;
@@ -46,9 +46,9 @@ public final class Constants {
     //Climb
     public static final int climbElevateMotor = 16; //Connection for motor that lifts the elevator
     public static final int climbTipAngleMotor = 17; //Connection for motor that tips the robot while hanging
-    public static final double climbElevatorSpeedUp = 0.4; //Speed for which elevator goes up at
+    public static final double climbElevatorSpeedUp = 0.5; //Speed for which elevator goes up at
     public static final double climbElevatorSpeedDown = -1;
-    public static final double climbTipSpeed = 0.4; //Speed for which angle to tip at
+    public static final double climbTipSpeed = 0.9; //Speed for which angle to tip at
     public static final double climbElevatorEncoderToMeter = 0;//How many ticks for a meter(Elevator)
     public static final double climbAngleEncoderToAngle = 0;//How many ticks for 1(Angle)
     public static final int elevatorClimbLowerSwitch = 3;
@@ -57,13 +57,14 @@ public final class Constants {
     public static final int angleFrontSwitch = 99;
 
     //Storage
-    public static final double storagePower = 0.6;//power that the storage system motors use
-    public static final double storagePowerAuto = 0.6;
+    public static final double storagePower = 0.7;//power that the storage system motors use
+    public static final double storagePowerAuto = 0.65;
     public static final double maxDetection = 3;//max measurment when we detect the ball
     public static final double minDetection = 1.2;//min measurment when we detect the ball
     public static final int storageLowerMotor = 15;
     public static final int storageUpperMotor = 20;
     public static final int storageSensor = 0;
+    public static boolean ballDetected;
 
     //OI
     public static final int leftJoystickPort = 1;

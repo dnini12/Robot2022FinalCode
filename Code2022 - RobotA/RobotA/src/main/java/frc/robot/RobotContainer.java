@@ -16,11 +16,15 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.AimToHub;
 import frc.robot.commands.AutoDriveToHub;
 import frc.robot.commands.Autonomous3Balls;
+import frc.robot.commands.Autonomous3BallsAndPickup;
 import frc.robot.commands.AutonomousOneBallPickup;
+import frc.robot.commands.ChangeMapPose;
 import frc.robot.commands.CollectBall;
 import frc.robot.commands.DriveForward;
+import frc.robot.commands.TeleopShoot;
 import frc.robot.commands.Turn180Degrees;
 import frc.robot.subsystems.ClimbBase;
 import frc.robot.subsystems.DriveBase;
@@ -79,7 +83,10 @@ public class RobotContainer {
 
     //return new InstantCommand(()->this.intakeBase.intakeIn(), this.intakeBase);
 
-    return new Autonomous3Balls(driveBase, intakeBase, storageSubsystem, shooterBase);
+    //return new Autonomous3Balls(driveBase, intakeBase, storageSubsystem, shooterBase, limelightBase);
+
+    // return new ChangeMapPose(driveBase);
+    
     
     // RamseteCommand command = new RamseteCommand(
     //   t,
@@ -89,6 +96,17 @@ public class RobotContainer {
     //   driveBase::setVelocity,
     //   driveBase
     //   );
+
+    //return new AimToHub(limelightBase, driveBase);
+
+    // return new TeleopShoot(driveBase, shooterBase, limelightBase, storageSubsystem);
+
+
+
+
+
+    //return new Autonomous3Balls(driveBase, intakeBase, storageSubsystem, shooterBase, limelightBase);
+    return new Autonomous3BallsAndPickup(driveBase, intakeBase, storageSubsystem, shooterBase, limelightBase);
       
     //   return new InstantCommand(()->driveBase.SetPose(t.getInitialPose()), driveBase).andThen(command);
   }
