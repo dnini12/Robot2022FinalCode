@@ -21,7 +21,7 @@ import frc.robot.commands.AutoDriveToHub;
 import frc.robot.commands.Autonomous3Balls;
 import frc.robot.commands.Autonomous3BallsAndPickup;
 import frc.robot.commands.AutonomousOneBallPickup;
-import frc.robot.commands.ChangeMapPose;
+import frc.robot.commands.AutonomousTaxiPickUp;
 import frc.robot.commands.CollectBall;
 import frc.robot.commands.DriveForward;
 import frc.robot.commands.TeleopShoot;
@@ -103,10 +103,10 @@ public class RobotContainer {
 
 
 
-
-
-    //return new Autonomous3Balls(driveBase, intakeBase, storageSubsystem, shooterBase, limelightBase);
-    return new Autonomous3BallsAndPickup(driveBase, intakeBase, storageSubsystem, shooterBase, limelightBase);
+    //return new AutonomousTaxiPickUp(driveBase, shooterBase, limelightBase, intakeBase, storageSubsystem);
+    //return new AutonomousOneBallPickup(this.driveBase, this.shooterBase, this.limelightBase, this.intakeBase, this.storageSubsystem);
+    return new Autonomous3Balls(driveBase, intakeBase, storageSubsystem, shooterBase, limelightBase);
+   // return new Autonomous3BallsAndPickup(driveBase, intakeBase, storageSubsystem, shooterBase, limelightBase);
       
     //   return new InstantCommand(()->driveBase.SetPose(t.getInitialPose()), driveBase).andThen(command);
   }

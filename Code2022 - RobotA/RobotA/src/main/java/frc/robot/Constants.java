@@ -24,7 +24,7 @@ public final class Constants {
     public static final int lowLimitSwitch = 0; //Connection for imit switch pressed when intake is down
     public static final double intakeSpeed = 1; //Speed to swallow balls with ;)
     public static final double intakeAngleSpeedRaise = 0.6; //Speed to raise intake with
-    public static final double intakeAngleSpeedLower = 0.4; //Speed to lower intake with
+    public static final double intakeAngleSpeedLower = 0.35; //Speed to lower intake with
 
 
     
@@ -37,8 +37,9 @@ public final class Constants {
 
     public static final double shootingSpeedDeadzone = 0.0;
 
-    public static final double shootingFromHubVelocity = 19;
-    public static final double shootingFromHubVelocityAuto = 19.5;
+    public static final double shootingFromHubVelocity = 18.5;
+    public static final double shootingFromHubVelocityAuto = 18.5;
+    public static final double shootingFromHubVelocityAuto2 = 19;
     public static final double shootingFromLaunchpadVelocity = 0.0;
 
     public static final double shooterPulseToMeter = 0.4788/2048;
@@ -46,9 +47,9 @@ public final class Constants {
     //Climb
     public static final int climbElevateMotor = 16; //Connection for motor that lifts the elevator
     public static final int climbTipAngleMotor = 17; //Connection for motor that tips the robot while hanging
-    public static final double climbElevatorSpeedUp = 0.5; //Speed for which elevator goes up at
-    public static final double climbElevatorSpeedDown = -1;
-    public static final double climbTipSpeed = 0.9; //Speed for which angle to tip at
+    public static final double climbElevatorSpeedUp = -1; //Speed for which elevator goes up at
+    public static final double climbElevatorSpeedDown = 1;
+    public static final double climbTipSpeed = 1; //Speed for which angle to tip at
     public static final double climbElevatorEncoderToMeter = 0;//How many ticks for a meter(Elevator)
     public static final double climbAngleEncoderToAngle = 0;//How many ticks for 1(Angle)
     public static final int elevatorClimbLowerSwitch = 3;
@@ -96,6 +97,7 @@ public final class Constants {
         public static final double limelightHeight = 0.81;
         public static final double heightForCalculation = upperHubHeight - limelightHeight;
         public static final double leftoverDist = 0; //distance from when 'AutoDriveToHub' ends to target distance from hub
+        public static final double shootingDistance = 0;
     }
 
 }

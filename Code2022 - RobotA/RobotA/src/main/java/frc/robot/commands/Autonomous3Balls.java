@@ -60,15 +60,15 @@ public class Autonomous3Balls extends SequentialCommandGroup {
 
     addCommands(
       new ParallelRaceGroup(new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto), new WaitCommand(1.3)),
-      new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setTopStorage(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(1.5),new ChangeIntakeRotation(intakeBase)),
+      new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setTopStorage(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(1.5)),
       new InstantCommand(()->shooterBase.setPowerShooter(0), shooterBase),
       new InstantCommand(()->intakeBase.intakeIn(), intakeBase),
       new InstantCommand(()->storageSubsystem.setLowStorage(), storageSubsystem),
       new InstantCommand(()->driveBase.SetPose(t.getInitialPose()), driveBase),
       new ParallelRaceGroup(trajectoryCommand,new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto)),    
       new ParallelRaceGroup(new AimToHub(limelightBase, driveBase), new WaitCommand(0.7)),
-      new ParallelRaceGroup(new MoveStorageBackAuto(storageSubsystem), new WaitCommand(0.5)),
-      new ParallelRaceGroup(new MoveStorageAuto(storageSubsystem), new WaitCommand(0.6)),
+      new ParallelRaceGroup(new MoveStorageBackAuto(storageSubsystem), new WaitCommand(0.4)),
+      new ParallelRaceGroup(new MoveStorageAuto(storageSubsystem), new WaitCommand(0.7)),
       new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setForward(),()->this.storageSubsystem.zeroAllMotors(),storageSubsystem), new WaitCommand(0.6)),
       new InstantCommand(()->shooterBase.setPowerShooter(0), shooterBase)
     );

@@ -37,11 +37,11 @@ public class ClimbDefault extends CommandBase {
 
     if(OI.getXboxController().getPOV()==90){
       this.climbBase.tipForwardRobotElevator();
-      System.out.println("tzila");
+      
     }
     else if(OI.getXboxController().getPOV()==270){
       this.climbBase.tipBackwardsRobotElevator();
-      System.out.println("bong");
+      
     }
     else{
       this.climbBase.zeroAngleMotor();

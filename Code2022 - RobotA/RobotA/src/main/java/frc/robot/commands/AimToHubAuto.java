@@ -24,6 +24,7 @@ public class AimToHubAuto extends CommandBase {
 
   private double maxPowerDrive = 0.7;
   private PIDController pidHeading;
+  
   public AimToHubAuto(LimelightBase limelightBase, DriveBase driveBase) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.driveBase = driveBase;

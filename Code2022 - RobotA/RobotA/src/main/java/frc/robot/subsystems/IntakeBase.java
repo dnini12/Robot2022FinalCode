@@ -32,17 +32,18 @@ public class IntakeBase extends SubsystemBase {
   private double angleSpeedLower = Constants.intakeAngleSpeedLower; //Speed to lower the intake
 
   public IntakeBase() {
-    this.angleMotor = new CANSparkMax(Constants.intakeAngleMotor, MotorType.kBrushless);
+    //this.angleMotor = new CANSparkMax(Constants.intakeAngleMotor, MotorType.kBrushless);
     this.intakeMotor = new CANSparkMax(Constants.intakeMotor, MotorType.kBrushless);
     this.lowLimitSwitch = new DigitalInput(Constants.lowLimitSwitch);
-    this.topLimitSwitch = new DigitalInput(Constants.topLimitSwitch);
+    //this.topLimitSwitch = new DigitalInput(Constants.topLimitSwitch);
 
     setDefaultCommand(new IntakeDfault(this));
   }
 
   //If the intake is upright
   public boolean getTopSwitch(){
-    return !this.topLimitSwitch.get();
+    //return !this.topLimitSwitch.get();
+    return true;
   }
 
   //If the intake is down
@@ -86,7 +87,7 @@ public class IntakeBase extends SubsystemBase {
 
 
     
-    SmartDashboard.putBoolean("Upper intake", getTopSwitch());
+    
     SmartDashboard.putBoolean("lower intake", getLowSwitch());
   }
 }

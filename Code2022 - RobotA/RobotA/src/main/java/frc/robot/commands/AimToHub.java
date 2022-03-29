@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.OI;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LimelightBase;
@@ -38,7 +39,7 @@ public class AimToHub extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    this.pidHeading.setSetpoint(0);
+    this.pidHeading.setSetpoint(3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -57,6 +58,6 @@ public class AimToHub extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pidHeading.atSetpoint()||limelightBase.getA()==0;
+    return pidHeading.atSetpoint()|| OI.getBackButton();
   }
 }

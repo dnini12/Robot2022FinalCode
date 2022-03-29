@@ -4,28 +4,24 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.LimelightBase;
-import frc.robot.subsystems.ShooterBase;
-import frc.robot.subsystems.StorageSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class TeleopShoot extends ParallelCommandGroup {
-  /** Creates a new TeleopShoot. */
-  public TeleopShoot(DriveBase driveBase, ShooterBase shooterBase, LimelightBase limelightBase, StorageSubsystem storageSubsystem) {
+public class LockHubTimerTeleop extends SequentialCommandGroup {
+  /** Creates a new LockHubTimerTeleop. */
+  LimelightBase limelightBase;
+  DriveBase driveBase;
+  public LockHubTimerTeleop(LimelightBase limelightBase, DriveBase driveBase) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-
-
-
     addCommands(
-        new SetShooterSpeed(shooterBase, Constants.shootingFromHubVelocity, storageSubsystem),
-        new LockHubTimerTeleop(limelightBase, driveBase)
+      new ParallelRaceGroup(new AimToHub(limelightBase, driveBase),new WaitCommand(0.6))
     );
   }
 }

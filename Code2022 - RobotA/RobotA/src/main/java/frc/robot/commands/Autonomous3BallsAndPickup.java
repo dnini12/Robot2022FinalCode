@@ -84,19 +84,17 @@ public class Autonomous3BallsAndPickup extends SequentialCommandGroup {
 
     Constants.ballDetected = false;
     addCommands(
-      new ParallelRaceGroup(new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto), new WaitCommand(1.3)), // Charges up the shooter
-      new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setTopStorage(),()->this.storageSubsystem.zeroAllMotors()), new WaitCommand(1.2) // Moves the balls to shooter
-      ,new ChangeIntakeRotation(intakeBase)),// Lowers Intake
+      new ParallelRaceGroup(new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto), new WaitCommand(1.3)),// Lowers Intake
+      new ParallelRaceGroup(new StartEndCommand(()->this.storageSubsystem.setTopStorage(),()->this.storageSubsystem.zeroAllMotors()),new InstantCommand(()->intakeBase.intakeIn(), intakeBase), new WaitCommand(1.5)),
       new InstantCommand(()->shooterBase.setPowerShooter(0), shooterBase), // Stops shooter
-      new InstantCommand(()->intakeBase.intakeIn(), intakeBase), // Starts to collect balls
       new InstantCommand(()->storageSubsystem.setLowStorage(), storageSubsystem), // Starts to move lower storage
       new InstantCommand(()->driveBase.SetPose(threeBallsTrajectory.getInitialPose()), driveBase), // Sets the robots position on the map 
       new ParallelRaceGroup(threeBallsCommand,// Path to 2+3 balls
       new ShootAuto(shooterBase, Constants.shootingFromHubVelocityAuto)), // Charges up the shooter        
       
       new ParallelRaceGroup(new AimToHubAuto(limelightBase, driveBase), new InstantCommand(()->intakeBase.zeroIntakeMotor(), intakeBase), new WaitCommand(0.7)),// Stops collecting balls
-      new ParallelRaceGroup(new MoveStorageBackIf(storageSubsystem), new WaitCommand(0.5)),
-      new ParallelRaceGroup(new MoveStorageIf(storageSubsystem), new WaitCommand(0.6)),
+      new ParallelRaceGroup(new MoveStorageBackIf(storageSubsystem), new WaitCommand(0.4)),
+      new ParallelRaceGroup(new MoveStorageIf(storageSubsystem), new WaitCommand(0.7)),
 
       new InstantCommand(() -> this.storageSubsystem.zeroAllMotors()),// Stops motors
       new InstantCommand(()->shooterBase.setPowerShooter(0), shooterBase), // Stops powering shooter

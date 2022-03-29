@@ -161,7 +161,7 @@ public class DriveBase extends SubsystemBase {
   }
 
  public double getGyroYaw(){//get gyro X axis
-   return this.gyro.getYaw();
+   return -this.gyro.getYaw();
  }
 
 
@@ -206,15 +206,15 @@ public void print(){
   @Override
   public void periodic() {
     SmartDashboard.putNumber("GyroYaw", getGyroYaw());
-    // SmartDashboard.putNumber("GyroRoll", getGyroRoll());
-    // SmartDashboard.putNumber("GyroPitch", getGyroPitch());
+    SmartDashboard.putNumber("GyroRoll", getGyroRoll());
+    SmartDashboard.putNumber("GyroPitch", getGyroPitch());
     // SmartDashboard.putNumber("RightEncoder", getEncoderValueRight());
     // SmartDashboard.putNumber("LeftEncoder", getEncoderValueLeft());
     // SmartDashboard.putNumber("Left velocity", getLeftVelocity());
     // SmartDashboard.putNumber("Right velocity", getRightVelocity());
     SmartDashboard.putNumber("Left Distance", getLeftDistance());
     SmartDashboard.putNumber("Right Distance", getRightDistance());
-    //SmartDashboard.putNumber("FF error", right[0].getClosedLoopError());
+    //SmartDashboard.putNumber("FF error", right[0].getClose8dLoopError());
     //SmartDashboard.putNumber("FF target", right[0].getClosedLoopTarget());
     //SmartDashboard.putNumber("power", right[0].getMotorOutputPercent());
     odometry.update(Rotation2d.fromDegrees(getGyroYaw()), getLeftDistance(), getRightDistance());

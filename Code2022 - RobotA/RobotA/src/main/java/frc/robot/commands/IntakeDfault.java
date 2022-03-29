@@ -35,15 +35,15 @@ public class IntakeDfault extends CommandBase {
       intakeBase.zeroIntakeMotor();
     }
 
-     if (OI.getXboxController().getLeftY()<-0.1) {
-      intakeBase.raiseIntake();
-     }
-     else if (OI.getXboxController().getLeftY()>0.1) {
-      intakeBase.lowerIntake();
-     }
-     else{
-      intakeBase.zeroAngleMotor();
-     }
+    //  if (OI.getXboxController().getLeftY()<-0.1) {
+    //   intakeBase.raiseIntake();
+    //  }
+    //  else if (OI.getXboxController().getLeftY()>0.1) {
+    //   intakeBase.lowerIntake();
+    //  }
+    //  else{
+    //   intakeBase.zeroAngleMotor();
+    //  }
   }
 
   // Called once the command ends or is interrupted.
