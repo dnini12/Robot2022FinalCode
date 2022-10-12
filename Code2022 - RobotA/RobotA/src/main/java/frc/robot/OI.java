@@ -13,6 +13,7 @@ import frc.robot.commands.ChangeIntakeRotation;
 import frc.robot.commands.LockHubTimerTeleop;
 import frc.robot.commands.SetShooterSpeed;
 import frc.robot.commands.TeleopShoot;
+import frc.robot.commands.SetCalcShooterSpeed;
 import frc.robot.subsystems.ClimbBase;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.IntakeBase;
@@ -42,6 +43,7 @@ public class OI {
     private ClimbBase climbBase;
     private StorageSubsystem storageSubsystem;
     private IntakeBase intakeBase;
+    private LimelightBase limelightBase;
 
 
     public static XboxController getXboxController(){
@@ -75,10 +77,11 @@ public class OI {
         this.shooterBase = shooterBase;
         this.storageSubsystem = storageSubsystem;
         this.climbBase = climbBase;
+        this.limelightBase = limelightBase;
         //this.aButton.whenPressed(new ChangeIntakeRotation(this.intakeBase));
         // this.leftBumber.whenPressed(new LockOnHub(RobotContainer.driveBase, RobotContainer.limelightBase));
         this.yButton.whenPressed(new TeleopShoot(driveBase, shooterBase, limelightBase, storageSubsystem));
-        this.rightBumber.whenPressed(new SetShooterSpeed(this.shooterBase, Constants.shootingFromHubVelocity,this.storageSubsystem)); 
+        this.rightBumber.whenPressed(new SetCalcShooterSpeed(shooterBase, storageSubsystem, limelightBase)); 
         this.leftBumber.whenPressed(new LockHubTimerTeleop(limelightBase, driveBase));     
     }
 }

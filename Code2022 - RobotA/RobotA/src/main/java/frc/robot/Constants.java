@@ -16,6 +16,8 @@ package frc.robot;
 public final class Constants {
 
 
+    public static final double e = Math.exp(1);
+
     //intakeAngleLowerSpeed, shootingMotor, shootingAngle, shootingAngleSpeed
     //Intake
     public static final int intakeAngleMotor = 13; //Connection for motor that changes the intake's angle
@@ -58,6 +60,7 @@ public final class Constants {
     public static final int angleFrontSwitch = 99;
 
     //Storage
+    public static final double shooterSpeedDeadzone = 0.8;
     public static final double storagePower = 0.7;//power that the storage system motors use
     public static final double storagePowerAuto = 0.65;
     public static final double maxDetection = 3;//max measurment when we detect the ball

@@ -24,7 +24,7 @@ public class TeleopShoot extends ParallelCommandGroup {
 
 
     addCommands(
-        new SetShooterSpeed(shooterBase, Constants.shootingFromHubVelocity, storageSubsystem),
+        new SetCalcShooterSpeed(shooterBase,  storageSubsystem, limelightBase),
         new LockHubTimerTeleop(limelightBase, driveBase)
     );
   }

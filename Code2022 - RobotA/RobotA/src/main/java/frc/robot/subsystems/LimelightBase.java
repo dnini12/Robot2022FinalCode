@@ -46,6 +46,10 @@ public class LimelightBase extends SubsystemBase {
   public double getDistanceFromHub(){
     double limelightAngleRadians = (FieldAndRobot.limelightAngleDegrees +getY()) * (Math.PI / 180);
     return FieldAndRobot.heightForCalculation / Math.tan(limelightAngleRadians);
+
+    // return FieldAndRobot.heightForCalculation/Math.tan(FieldAndRobot.limelightAngleDegrees+this.getY());
+
+
   }
 
   @Override

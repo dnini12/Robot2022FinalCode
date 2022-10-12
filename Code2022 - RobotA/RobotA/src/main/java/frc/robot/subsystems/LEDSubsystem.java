@@ -27,6 +27,7 @@ public class LEDSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putBoolean("Differnt From Correct Speed", Math.abs(ShooterBase.velocity-ShooterBase.velocityTarget)<5&&ShooterBase.velocityTarget!=0);
     //ledStrip.movingRGB(10, 255, 0, 255, 10, false);
     if(Robot.matchStarted){
       SmartDashboard.putNumber("Timer", Timer.getMatchTime());
